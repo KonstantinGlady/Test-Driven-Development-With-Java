@@ -16,12 +16,25 @@ public class Score {
     }
 
     public void assess(String attempt) {
-        if (isCorrectLetter(position, attempt)) {
-            result = Letter.CORRECT;
+
+        for (char current : attempt.toCharArray()) {
+            if (isCorrectLetter(current)) {
+
+                result = Letter.CORRECT;
+            } else if (occursInWord(current)) {
+
+                result = Letter.PART_CORRECT;
+            }
+
+            position++;
         }
     }
 
-    private boolean isCorrectLetter(int position, String attempt) {
-        return attempt.charAt(position) == correct.charAt(position);
+    private boolean occursInWord(char current) {
+        return correct.contains(String.valueOf(current));
+    }
+
+    private boolean isCorrectLetter(char currentLetter) {
+        return correct.charAt(position) == currentLetter;
     }
 }
