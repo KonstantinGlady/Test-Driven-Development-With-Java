@@ -2,6 +2,7 @@ package com.wordz.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static com.wordz.domain.Letter.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WordTest {
@@ -11,11 +12,13 @@ public class WordTest {
 
         var word = new Word("A");
         var score = word.guess("Z");
-        assertScoreForLetter(score, 0, Letter.INCORRECT);
+        assertScoreForGuess(score, INCORRECT);
     }
 
-    private void assertScoreForLetter(Score score, int position, Letter incorrect) {
-        assertThat(score.letter(position)).isEqualTo(incorrect);
+    private void assertScoreForGuess(Score score, Letter... expected) {
+        for (int position = 0; position < expected.length; position++) {
+            assertThat(score.letter(position)).isEqualTo(expected[position]);
+        }
     }
 
     @Test
@@ -23,7 +26,7 @@ public class WordTest {
 
         var word = new Word("A");
         var score = word.guess("A");
-        assertScoreForLetter(score, 0, Letter.CORRECT);
+        assertScoreForGuess(score, CORRECT);
     }
 
     @Test
@@ -31,7 +34,7 @@ public class WordTest {
 
         var word = new Word("AR");
         var score = word.guess("ZA");
-        assertScoreForLetter(score, 1, Letter.PART_CORRECT);
+        assertScoreForGuess(score, INCORRECT, PART_CORRECT);
     }
 
     @Test
@@ -39,8 +42,8 @@ public class WordTest {
 
         var word = new Word("ARI");
         var score = word.guess("ZAI");
-        assertScoreForLetter(score, 0, Letter.INCORRECT);
-        assertScoreForLetter(score, 1, Letter.PART_CORRECT);
-        assertScoreForLetter(score, 2, Letter.CORRECT);
+        assertScoreForGuess(score, INCORRECT,
+                PART_CORRECT,
+                CORRECT);
     }
 }

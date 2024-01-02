@@ -6,7 +6,7 @@ import java.util.List;
 public class Score {
 
     private final String correct;
-    private List<Letter> result = new ArrayList<>();
+    private List<Letter> results = new ArrayList<>();
     private int position;
 
     public Score(String correct) {
@@ -15,24 +15,25 @@ public class Score {
     }
 
     public Letter letter(int position) {
-        return result.get(position);
+        return results.get(position);
     }
 
     public void assess(String attempt) {
 
         for (char current : attempt.toCharArray()) {
-            if (isCorrectLetter(current)) {
-
-                result.add(Letter.CORRECT);
-            } else if (occursInWord(current)) {
-
-                result.add(Letter.PART_CORRECT);
-            } else {
-                result.add(Letter.INCORRECT);
-            }
-
+            results.add(forScore(current));
             position++;
         }
+    }
+
+    private Letter forScore(char current) {
+        if (isCorrectLetter(current)) {
+            return Letter.CORRECT;
+        }
+        if (occursInWord(current)) {
+            return Letter.PART_CORRECT;
+        }
+        return Letter.INCORRECT;
     }
 
     private boolean occursInWord(char current) {
