@@ -25,4 +25,12 @@ public class WordTest {
         var score = word.guess("A");
         assertScoreForLetter(score, 0, Letter.CORRECT);
     }
+
+    @Test
+    void secondLetterWrongPosition() {
+
+        var word = new Word("AR");
+        var score = word.guess("ZA");
+        assertThat(score.letter(1)).isEqualTo(Letter.PART_CORRECT);
+    }
 }
