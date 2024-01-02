@@ -31,6 +31,6 @@ public class WordTest {
 
         var word = new Word("AR");
         var score = word.guess("ZA");
-        assertThat(score.letter(1)).isEqualTo(Letter.PART_CORRECT);
+        assertScoreForLetter(score, 1, Letter.PART_CORRECT);
     }
 }
