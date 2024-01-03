@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deae3d03-bfe2-4ba8-a027-ff27ce7ef715" name="Changes" comment="allScoreCombinations GREEN">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_14_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_14_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_core_3_24_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_10_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_5_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_junit_jupiter_5_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_objenesis_objenesis_3_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/RandomNumbers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordRepositoryException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelectionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chapter05/src/test/java/com/wordz/domain/WordSelectionFailureTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_9_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_10_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_9_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_10_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/chapter05.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/chapter05.test.iml" afterDir="false" />
+    <list default="true" id="deae3d03-bfe2-4ba8-a027-ff27ce7ef715" name="Changes" comment="reportsWordNotFound RED">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter05/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/RandomNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/RandomNumbers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelectionException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704191662180</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="reportsWordNotFound RED">
+      <option name="closed" value="true" />
+      <created>1704261861978</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704261861978</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -256,6 +244,7 @@
     <MESSAGE value="secondLetterWrongPosition GREEN" />
     <MESSAGE value="allScoreCombinations RED" />
     <MESSAGE value="allScoreCombinations GREEN" />
-    <option name="LAST_COMMIT_MESSAGE" value="allScoreCombinations GREEN" />
+    <MESSAGE value="reportsWordNotFound RED" />
+    <option name="LAST_COMMIT_MESSAGE" value="reportsWordNotFound RED" />
   </component>
 </project>
