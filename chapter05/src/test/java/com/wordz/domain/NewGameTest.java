@@ -21,7 +21,6 @@ public class NewGameTest {
     @Test
     void startsNewGame() {
 
-        var wordz = new Wordz();
         var player = new Player();
         wordz.newGame(player);
 
