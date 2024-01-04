@@ -12,8 +12,10 @@ public class WordSelection {
 
     public String chooseRandomWord() {
         try {
+
             int wordNumber = random.next(repository.highestWordNumber());
             return repository.fetchWordByNumber(wordNumber);
+
         } catch (WordRepositoryException ex) {
             throw new WordSelectionException("Could not select word", ex);
         }
