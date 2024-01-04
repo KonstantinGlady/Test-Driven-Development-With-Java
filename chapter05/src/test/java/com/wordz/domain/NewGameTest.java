@@ -45,8 +45,13 @@ public class NewGameTest {
     @Test
     void selectRandomWord() {
 
-        when(randomNumbers.next(anyInt())).thenReturn(2);
-        when(wordRepository.fetchWordByNumber(2)).thenReturn("ABCDE");
+        givenWordToSelect("ABCDE");
 
+    }
+
+    private void givenWordToSelect(String wordToSelect) {
+        int wordNumber = 2;
+        when(randomNumbers.next(anyInt())).thenReturn(wordNumber);
+        when(wordRepository.fetchWordByNumber(wordNumber)).thenReturn(wordToSelect);
     }
 }
