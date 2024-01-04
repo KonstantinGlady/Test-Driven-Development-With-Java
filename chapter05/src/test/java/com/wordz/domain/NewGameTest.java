@@ -7,8 +7,8 @@ public class NewGameTest {
     @Test
     void startsNewGame() {
 
-        var game = new Game();
+        var wordz = new Wordz();
         var player = new Player();
-        game.start(player);
+        wordz.newGame(player);
     }
 }
