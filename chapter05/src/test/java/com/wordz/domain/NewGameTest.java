@@ -46,7 +46,10 @@ public class NewGameTest {
     void selectRandomWord() {
 
         givenWordToSelect("ABCDE");
-
+        var player = new Player();
+        wordz.newGame(player);
+        var game = getGameInRepository();
+        assertThat(game.getWord()).isEqualTo("ABCDE");
     }
 
     private void givenWordToSelect(String wordToSelect) {
