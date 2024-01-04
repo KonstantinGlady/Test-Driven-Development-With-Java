@@ -13,6 +13,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class NewGameTest {
 
+    private final Player PLAYER = new Player();
     @Mock
     private GameRepository gameRepository;
     @InjectMocks
@@ -21,15 +22,17 @@ public class NewGameTest {
     @Test
     void startsNewGame() {
 
-        var player = new Player();
-        wordz.newGame(player);
-
-        var gameArgument = ArgumentCaptor.forClass(Game.class);
-        verify(gameRepository).create(gameArgument.capture());
-        var game = gameArgument.getValue();
+        wordz.newGame(PLAYER);
+        var game = getGameInRepository();
 
         assertThat(game.getWord()).isEqualTo("ARISE");
         assertThat(game.getAttemptNumber()).isZero();
-        assertThat(game.getPlayer()).isSameAs(player);
+        assertThat(game.getPlayer()).isSameAs(PLAYER);
+    }
+
+    private Game getGameInRepository() {
+        var gameArgument = ArgumentCaptor.forClass(Game.class);
+        verify(gameRepository).create(gameArgument.capture());
+        return gameArgument.getValue();
     }
 }
