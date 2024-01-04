@@ -8,7 +8,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class NewGameTest {
@@ -16,6 +18,10 @@ public class NewGameTest {
     private final Player PLAYER = new Player();
     @Mock
     private GameRepository gameRepository;
+    @Mock
+    private WordRepository wordRepository;
+    @Mock
+    private RandomNumbers randomNumbers;
     @InjectMocks
     private Wordz wordz;
 
@@ -34,5 +40,13 @@ public class NewGameTest {
         var gameArgument = ArgumentCaptor.forClass(Game.class);
         verify(gameRepository).create(gameArgument.capture());
         return gameArgument.getValue();
+    }
+
+    @Test
+    void selectRandomWord() {
+
+        when(randomNumbers.next(anyInt())).thenReturn(2);
+        when(wordRepository.fetchWordByNumber(2)).thenReturn("ABCDE");
+
     }
 }
