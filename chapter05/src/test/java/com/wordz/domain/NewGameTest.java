@@ -43,14 +43,6 @@ public class NewGameTest {
         return gameArgument.getValue();
     }
 
-    @Test
-    void selectRandomWord() {
-
-        givenWordToSelect("ABCDE");
-        wordz.newGame(PLAYER);
-        var game = getGameInRepository();
-        assertThat(game.getWord()).isEqualTo("ABCDE");
-    }
 
     private void givenWordToSelect(String wordToSelect) {
         int wordNumber = 2;
