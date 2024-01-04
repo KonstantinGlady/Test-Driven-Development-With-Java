@@ -28,6 +28,7 @@ public class NewGameTest {
     @Test
     void startsNewGame() {
 
+        givenWordToSelect("ARISE");
         wordz.newGame(PLAYER);
         var game = getGameInRepository();
 
@@ -46,8 +47,7 @@ public class NewGameTest {
     void selectRandomWord() {
 
         givenWordToSelect("ABCDE");
-        var player = new Player();
-        wordz.newGame(player);
+        wordz.newGame(PLAYER);
         var game = getGameInRepository();
         assertThat(game.getWord()).isEqualTo("ABCDE");
     }
