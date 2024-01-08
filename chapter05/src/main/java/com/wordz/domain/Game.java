@@ -27,4 +27,8 @@ public class Game {
     public Player getPlayer() {
         return player;
     }
+
+    public void incrementAttemptNumber() {
+        attemptNumber++;
+    }
 }
