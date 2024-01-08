@@ -34,7 +34,7 @@ public class GuessTest {
 
     private void givenGameInRepository(Game game) {
         when(gameRepository
-                .fetchGameForPlayer(PLAYER))
+                .fetchForPlayer(PLAYER))
                 .thenReturn(game);
     }
 

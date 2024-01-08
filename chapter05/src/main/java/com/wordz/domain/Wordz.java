@@ -11,13 +11,15 @@ public class Wordz {
     }
 
     public void newGame(Player player) {
-
         var word = wordSelection.chooseRandomWord();
         var game = new Game(player, word, 0);
         gameRepository.create(game);
     }
 
     public GuessResult assess(Player player, String guess) {
-        return null;
+        var game = gameRepository.fetchForPlayer(player);
+        var target = new Word(game.getWord());
+        var score = target.guess(guess);
+        return new GuessResult(score, false);
     }
 }
