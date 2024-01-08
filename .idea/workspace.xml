@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="deae3d03-bfe2-4ba8-a027-ff27ce7ef715" name="Changes" comment="reportsWordNotFound RED">
+    <list default="true" id="deae3d03-bfe2-4ba8-a027-ff27ce7ef715" name="Changes" comment="selectRandomNumber GREEN">
+      <change afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/GuessResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapter05/src/test/java/com/wordz/domain/GuessTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/RandomNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/RandomNumbers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/WordSelectionException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/GameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/GameRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/Wordz.java" beforeDir="false" afterPath="$PROJECT_DIR$/chapter05/src/main/java/com/wordz/domain/Wordz.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +40,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -56,22 +58,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Tests in 'chapter05.test'.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Mercurial"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Tests in 'chapter05.test'.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Mercurial&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.wordz.domain" />
@@ -219,7 +221,111 @@
       <option name="project" value="LOCAL" />
       <updated>1704261861978</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="selectRandomWord RED">
+      <option name="closed" value="true" />
+      <created>1704346148055</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704346148055</updated>
+    </task>
+    <task id="LOCAL-00014" summary="selectRandomWord GREEN">
+      <option name="closed" value="true" />
+      <created>1704346191216</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704346191216</updated>
+    </task>
+    <task id="LOCAL-00015" summary="selectRandomWord REFACT">
+      <option name="closed" value="true" />
+      <created>1704346419713</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704346419713</updated>
+    </task>
+    <task id="LOCAL-00016" summary="startsNewGame RED 1">
+      <option name="closed" value="true" />
+      <created>1704361015348</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1704361015348</updated>
+    </task>
+    <task id="LOCAL-00017" summary="startsNewGame RED 2">
+      <option name="closed" value="true" />
+      <created>1704361083356</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1704361083356</updated>
+    </task>
+    <task id="LOCAL-00018" summary="startsNewGame RED 2">
+      <option name="closed" value="true" />
+      <created>1704361726954</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1704361726954</updated>
+    </task>
+    <task id="LOCAL-00019" summary="startsNewGame RED 2">
+      <option name="closed" value="true" />
+      <created>1704361905854</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1704361905854</updated>
+    </task>
+    <task id="LOCAL-00020" summary="startsNewGame GREEN">
+      <option name="closed" value="true" />
+      <created>1704362566708</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1704362566708</updated>
+    </task>
+    <task id="LOCAL-00021" summary="startsNewGame REFACT">
+      <option name="closed" value="true" />
+      <created>1704363238432</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1704363238432</updated>
+    </task>
+    <task id="LOCAL-00022" summary="selectRandomNumber RED 1">
+      <option name="closed" value="true" />
+      <created>1704367310553</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1704367310553</updated>
+    </task>
+    <task id="LOCAL-00023" summary="selectRandomNumber RED 2">
+      <option name="closed" value="true" />
+      <created>1704367495163</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704367495163</updated>
+    </task>
+    <task id="LOCAL-00024" summary="selectRandomNumber RED 3">
+      <option name="closed" value="true" />
+      <created>1704367838374</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1704367838374</updated>
+    </task>
+    <task id="LOCAL-00025" summary="selectRandomNumber GREEN">
+      <option name="closed" value="true" />
+      <created>1704368090663</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1704368090663</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,6 +351,19 @@
     <MESSAGE value="allScoreCombinations RED" />
     <MESSAGE value="allScoreCombinations GREEN" />
     <MESSAGE value="reportsWordNotFound RED" />
-    <option name="LAST_COMMIT_MESSAGE" value="reportsWordNotFound RED" />
+    <MESSAGE value="selectRandomWord RED" />
+    <MESSAGE value="selectRandomWord GREEN" />
+    <MESSAGE value="selectRandomWord REFACT" />
+    <MESSAGE value="startsNewGame RED" />
+    <MESSAGE value="startsNewGame RED 1" />
+    <MESSAGE value="startsNewGame RED 2" />
+    <MESSAGE value="startsNewGame GREEN" />
+    <MESSAGE value="startsNewGame REFACT" />
+    <MESSAGE value="selectRandomNumber RED" />
+    <MESSAGE value="selectRandomNumber RED 1" />
+    <MESSAGE value="selectRandomNumber RED 2" />
+    <MESSAGE value="selectRandomNumber RED 3" />
+    <MESSAGE value="selectRandomNumber GREEN" />
+    <option name="LAST_COMMIT_MESSAGE" value="selectRandomNumber GREEN" />
   </component>
 </project>

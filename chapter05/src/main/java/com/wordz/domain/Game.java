@@ -12,6 +12,10 @@ public class Game {
         this.attemptNumber = attemptNumber;
     }
 
+    public static Game create(Player player, String correctWord) {
+        return new Game(player, correctWord, 0);
+    }
+
     public String getWord() {
         return targetWord;
     }

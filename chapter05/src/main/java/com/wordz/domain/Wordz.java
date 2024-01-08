@@ -16,4 +16,8 @@ public class Wordz {
         var game = new Game(player, word, 0);
         gameRepository.create(game);
     }
+
+    public GuessResult assess(Player player, String guess) {
+        return null;
+    }
 }
