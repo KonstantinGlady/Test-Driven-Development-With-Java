@@ -18,10 +18,8 @@ public class Wordz {
 
     public GuessResult assess(Player player, String guess) {
         var game = gameRepository.fetchForPlayer(player);
-        game.incrementAttemptNumber();
+        var score = game.attempt(guess);
         gameRepository.update(game);
-        var target = new Word(game.getWord());
-        var score = target.guess(guess);
         return new GuessResult(score, false);
     }
 }

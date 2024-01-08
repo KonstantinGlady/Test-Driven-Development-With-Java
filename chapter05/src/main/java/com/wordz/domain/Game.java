@@ -28,7 +28,9 @@ public class Game {
         return player;
     }
 
-    public void incrementAttemptNumber() {
+    public Score attempt(String latestGuess) {
         attemptNumber++;
+        var target = new Word(targetWord);
+        return target.guess(latestGuess);
     }
 }
