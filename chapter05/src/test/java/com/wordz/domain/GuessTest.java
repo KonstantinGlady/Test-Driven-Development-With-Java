@@ -2,11 +2,13 @@ package com.wordz.domain;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +32,20 @@ public class GuessTest {
         Letter firstLetter = result.score().letter(0);
         assertThat(firstLetter)
                 .isEqualTo(Letter.PART_CORRECT);
+    }
+
+    @Test
+    void updatesAttemptNumber() {
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
+        wordz.assess(PLAYER, WRONG_WORD);
+        var game = getUpdatedGameInRepository();
+        assertThat(game.getAttemptNumber()).isEqualTo(1);
+    }
+
+    private Game getUpdatedGameInRepository() {
+        ArgumentCaptor<Game> argument = ArgumentCaptor.forClass(Game.class);
+        verify(gameRepository).update(argument.capture());
+        return argument.getValue();
     }
 
     private void givenGameInRepository(Game game) {

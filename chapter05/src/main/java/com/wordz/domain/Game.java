@@ -3,7 +3,7 @@ package com.wordz.domain;
 public class Game {
     private final Player player;
     private final String targetWord;
-    private final int attemptNumber;
+    private int attemptNumber;
 
     public Game(Player player, String targetWord, int attemptNumber) {
 
