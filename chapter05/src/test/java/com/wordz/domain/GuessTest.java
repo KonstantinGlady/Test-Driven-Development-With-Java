@@ -87,4 +87,12 @@ public class GuessTest {
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
         assertThat(result.isError()).isTrue();
     }
+
+    @Test
+    void recordsGameOverOnCorrectGuess() {
+        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
+        wordz.assess(PLAYER, CORRECT_WORD);
+        var game = getUpdatedGameInRepository();
+        assertThat(game.isGameOver()).isTrue();
+    }
 }
