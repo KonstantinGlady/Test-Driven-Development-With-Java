@@ -20,10 +20,7 @@ public class GuessTest {
 
     @Mock
     private GameRepository gameRepository;
-    @Mock
-    private WordRepository wordRepository;
-    @Mock
-    private RandomNumbers randomNumbers;
+
     @InjectMocks
     private Wordz wordz;
 
@@ -40,16 +37,38 @@ public class GuessTest {
 
     @Test
     void updatesAttemptNumber() {
-        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
+        givenGameInRepository(
+                Game.create(PLAYER, CORRECT_WORD));
         wordz.assess(PLAYER, WRONG_WORD);
         var game = getUpdatedGameInRepository();
         assertThat(game.getAttemptNumber()).isEqualTo(1);
     }
 
-    private Game getUpdatedGameInRepository() {
-        ArgumentCaptor<Game> argument = ArgumentCaptor.forClass(Game.class);
-        verify(gameRepository).update(argument.capture());
-        return argument.getValue();
+    @Test
+    void gameOverOnTooManyIncorrectGuesses() {
+        int maxGuesses = 5;
+        givenGameInRepository(
+                Game.create(PLAYER, CORRECT_WORD, maxGuesses - 1));
+        var result = wordz.assess(PLAYER, WRONG_WORD);
+        assertThat(result.isGameOver()).isTrue();
+    }
+
+    @Test
+    void rejectsGuessAfterGameOver() {
+        var game = Game.create(PLAYER, CORRECT_WORD);
+        game.end();
+        givenGameInRepository(game);
+        GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
+        assertThat(result.isError()).isTrue();
+    }
+
+    @Test
+    void recordsGameOverOnCorrectGuess() {
+        givenGameInRepository(
+                Game.create(PLAYER, CORRECT_WORD));
+        wordz.assess(PLAYER, CORRECT_WORD);
+        var game = getUpdatedGameInRepository();
+        assertThat(game.isGameOver()).isTrue();
     }
 
     private void givenGameInRepository(Game game) {
@@ -58,41 +77,9 @@ public class GuessTest {
                 .thenReturn(game);
     }
 
-    @Test
-    void reportsGameOverOnCorrectGuess() {
-
-        var player = new Player();
-        Game game = new Game(player, "ARISE", 0, false);
-        when(gameRepository.fetchForPlayer(player))
-                .thenReturn(game);
-        var wordz = new Wordz(gameRepository, wordRepository, randomNumbers);
-        var guess = "ARISE";
-        GuessResult result = wordz.assess(player, guess);
-        assertThat(result.isGameOver()).isTrue();
-    }
-
-    @Test
-    void gameOverOnTooManyIncorrectGuesses() {
-        int maxGuesses = 5;
-        givenGameInRepository(
-                new Game(PLAYER, CORRECT_WORD, maxGuesses - 1, false));
-        var result = wordz.assess(PLAYER, WRONG_WORD);
-        assertThat(result.isGameOver()).isTrue();
-    }
-
-    @Test
-    void rejectsGuessAfterGameOver() {
-        var gameOver = new Game(PLAYER, CORRECT_WORD, 1, true);
-        givenGameInRepository(gameOver);
-        GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
-        assertThat(result.isError()).isTrue();
-    }
-
-    @Test
-    void recordsGameOverOnCorrectGuess() {
-        givenGameInRepository(Game.create(PLAYER, CORRECT_WORD));
-        wordz.assess(PLAYER, CORRECT_WORD);
-        var game = getUpdatedGameInRepository();
-        assertThat(game.isGameOver()).isTrue();
+    private Game getUpdatedGameInRepository() {
+        ArgumentCaptor<Game> argument = ArgumentCaptor.forClass(Game.class);
+        verify(gameRepository).update(argument.capture());
+        return argument.getValue();
     }
 }

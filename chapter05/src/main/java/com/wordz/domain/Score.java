@@ -6,7 +6,7 @@ import java.util.List;
 public class Score {
 
     private final String correct;
-    private List<Letter> results = new ArrayList<>();
+    private final List<Letter> results = new ArrayList<>();
     private int position;
 
     public Score(String correct) {

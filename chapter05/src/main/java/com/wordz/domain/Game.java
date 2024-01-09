@@ -1,7 +1,7 @@
 package com.wordz.domain;
 
 public class Game {
-    private final int MAXIMUM_NUMBER_ALLOWED_GUESSES = 5;
+    private static final int MAXIMUM_NUMBER_ALLOWED_GUESSES = 5;
     private final Player player;
     private final String targetWord;
     private int attemptNumber;
@@ -19,6 +19,10 @@ public class Game {
         return new Game(player, correctWord, 0, false);
     }
 
+    public static Game create(Player player, String correctWord, int attemptNumber) {
+        return new Game(player, correctWord, attemptNumber, false);
+    }
+
     public String getWord() {
         return targetWord;
     }
@@ -32,9 +36,23 @@ public class Game {
     }
 
     public Score attempt(String latestGuess) {
-        attemptNumber++;
+        trackNumberOfAttempts();
+
         var target = new Word(targetWord);
-        return target.guess(latestGuess);
+        var score = target.guess(latestGuess);
+
+        if (score.allCorrect()) {
+            end();
+        }
+        return score;
+    }
+
+    private void trackNumberOfAttempts() {
+        attemptNumber++;
+
+        if (MAXIMUM_NUMBER_ALLOWED_GUESSES == attemptNumber) {
+            end();
+        }
     }
 
     public boolean hasNoRemainingGuesses() {
