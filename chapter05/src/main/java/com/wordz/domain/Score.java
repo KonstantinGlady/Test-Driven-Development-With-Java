@@ -45,9 +45,9 @@ public class Score {
     }
 
     public boolean allCorrect() {
-        long count = results.stream()
+        long totalCorrect = results.stream()
                 .filter(letter -> letter == Letter.CORRECT)
                 .count();
-        return count == correct.length();
+        return totalCorrect == correct.length();
     }
 }
