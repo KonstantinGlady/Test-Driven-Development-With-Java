@@ -23,6 +23,8 @@ public class Wordz {
         }
         var score = game.attempt(guess);
         if (score.allCorrect()) {
+            game.end();
+            gameRepository.update(game);
             return new GuessResult(score, true, false);
         }
         gameRepository.update(game);

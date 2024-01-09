@@ -5,7 +5,7 @@ public class Game {
     private final Player player;
     private final String targetWord;
     private int attemptNumber;
-    private final boolean isGameOver;
+    private boolean isGameOver;
 
     public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
 
@@ -43,5 +43,9 @@ public class Game {
 
     public boolean isGameOver() {
         return isGameOver;
+    }
+
+    public void end() {
+        isGameOver = true;
     }
 }
