@@ -23,6 +23,6 @@ public class Wordz {
             return new GuessResult(score, true);
         }
         gameRepository.update(game);
-        return new GuessResult(score, false);
+        return new GuessResult(score, game.hasNoRemainingGuesses());
     }
 }

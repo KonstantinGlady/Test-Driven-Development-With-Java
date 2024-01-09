@@ -1,6 +1,7 @@
 package com.wordz.domain;
 
 public class Game {
+    private final int MAXIMUM_NUMBER_ALLOWED_GUESSES = 5;
     private final Player player;
     private final String targetWord;
     private int attemptNumber;
@@ -32,5 +33,9 @@ public class Game {
         attemptNumber++;
         var target = new Word(targetWord);
         return target.guess(latestGuess);
+    }
+
+    public boolean hasNoRemainingGuesses() {
+        return attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES;
     }
 }
