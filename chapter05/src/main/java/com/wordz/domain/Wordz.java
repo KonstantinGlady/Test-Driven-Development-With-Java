@@ -12,7 +12,7 @@ public class Wordz {
 
     public void newGame(Player player) {
         var word = wordSelection.chooseRandomWord();
-        var game = new Game(player, word, 0);
+        var game = new Game(player, word, 0, false);
         gameRepository.create(game);
     }
 
@@ -20,9 +20,9 @@ public class Wordz {
         var game = gameRepository.fetchForPlayer(player);
         var score = game.attempt(guess);
         if (score.allCorrect()) {
-            return new GuessResult(score, true);
+            return new GuessResult(score, true, false);
         }
         gameRepository.update(game);
-        return new GuessResult(score, game.hasNoRemainingGuesses());
+        return new GuessResult(score, game.hasNoRemainingGuesses(), false);
     }
 }

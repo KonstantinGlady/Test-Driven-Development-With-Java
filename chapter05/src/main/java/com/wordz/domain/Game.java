@@ -6,7 +6,7 @@ public class Game {
     private final String targetWord;
     private int attemptNumber;
 
-    public Game(Player player, String targetWord, int attemptNumber) {
+    public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
 
         this.player = player;
         this.targetWord = targetWord;
@@ -14,7 +14,7 @@ public class Game {
     }
 
     public static Game create(Player player, String correctWord) {
-        return new Game(player, correctWord, 0);
+        return new Game(player, correctWord, 0, false);
     }
 
     public String getWord() {

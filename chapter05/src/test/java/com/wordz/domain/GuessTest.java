@@ -62,7 +62,7 @@ public class GuessTest {
     void reportsGameOverOnCorrectGuess() {
 
         var player = new Player();
-        Game game = new Game(player, "ARISE", 0);
+        Game game = new Game(player, "ARISE", 0, false);
         when(gameRepository.fetchForPlayer(player))
                 .thenReturn(game);
         var wordz = new Wordz(gameRepository, wordRepository, randomNumbers);
@@ -75,8 +75,16 @@ public class GuessTest {
     void gameOverOnTooManyIncorrectGuesses() {
         int maxGuesses = 5;
         givenGameInRepository(
-                new Game(PLAYER, CORRECT_WORD, maxGuesses - 1));
+                new Game(PLAYER, CORRECT_WORD, maxGuesses - 1, false));
         var result = wordz.assess(PLAYER, WRONG_WORD);
         assertThat(result.isGameOver()).isTrue();
+    }
+
+    @Test
+    void rejectsGuessAfterGameOver() {
+        var gameOver = new Game(PLAYER, CORRECT_WORD, 1, true);
+        givenGameInRepository(gameOver);
+        GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
+        assertThat(result.isError()).isTrue();
     }
 }
