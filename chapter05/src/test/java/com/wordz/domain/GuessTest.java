@@ -71,4 +71,12 @@ public class GuessTest {
         assertThat(result.isGameOver()).isTrue();
     }
 
+    @Test
+    void gameOverOnTooManyIncorrectGuesses() {
+        int maxGuesses = 5;
+        givenGameInRepository(
+                new Game(PLAYER, CORRECT_WORD, maxGuesses - 1));
+        var result = wordz.assess(PLAYER, WRONG_WORD);
+        assertThat(result.isGameOver()).isTrue();
+    }
 }
