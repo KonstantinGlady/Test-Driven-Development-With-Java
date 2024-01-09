@@ -5,12 +5,14 @@ public class Game {
     private final Player player;
     private final String targetWord;
     private int attemptNumber;
+    private final boolean isGameOver;
 
     public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
 
         this.player = player;
         this.targetWord = targetWord;
         this.attemptNumber = attemptNumber;
+        this.isGameOver = isGameOver;
     }
 
     public static Game create(Player player, String correctWord) {
@@ -37,5 +39,9 @@ public class Game {
 
     public boolean hasNoRemainingGuesses() {
         return attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES;
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
     }
 }
