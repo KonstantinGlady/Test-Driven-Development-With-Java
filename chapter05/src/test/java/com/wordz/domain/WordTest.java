@@ -46,4 +46,18 @@ public class WordTest {
                 PART_CORRECT,
                 CORRECT);
     }
+
+    @Test
+    void reportsAllCorrect() {
+        var word = new Word("ARISE");
+        var score = word.guess("ARISE");
+        assertThat(score.allCorrect()).isTrue();
+    }
+
+    @Test
+    void reportsNotAllCorrect() {
+        var word = new Word("ARISE");
+        var score = word.guess("ARI*E");
+        assertThat(score.allCorrect()).isFalse();
+    }
 }

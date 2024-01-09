@@ -43,4 +43,11 @@ public class Score {
     private boolean isCorrectLetter(char currentLetter) {
         return correct.charAt(position) == currentLetter;
     }
+
+    public boolean allCorrect() {
+        long count = results.stream()
+                .filter(letter -> letter == Letter.CORRECT)
+                .count();
+        return count == correct.length();
+    }
 }
