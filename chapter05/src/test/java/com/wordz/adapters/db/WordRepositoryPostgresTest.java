@@ -25,10 +25,11 @@ public class WordRepositoryPostgresTest {
         ds.setDatabaseName("wordzdb");
         ds.setCurrentSchema("public");
         ds.setUser("ciuser");
-        ds.setPassword("ciPassword");
+        ds.setPassword("cipassword");
         this.dataSource = ds;
     }
 
+    //todo 1(user not exist): create user ciuser with password 'cipassword';
     @Test
     void fetchWord() {
 
