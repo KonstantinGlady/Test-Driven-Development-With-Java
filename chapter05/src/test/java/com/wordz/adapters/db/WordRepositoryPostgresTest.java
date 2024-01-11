@@ -29,7 +29,8 @@ public class WordRepositoryPostgresTest {
         this.dataSource = ds;
     }
 
-    //todo 1(user not exist): create user ciuser with password 'cipassword';
+    //todo psql 1(user not exist): create user ciuser with password 'cipassword';
+    //todo 2(database "wordzdb" does not exist): create database wordzdb;
     @Test
     void fetchWord() {
 
