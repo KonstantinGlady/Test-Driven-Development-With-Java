@@ -42,5 +42,5 @@ public class WordRepositoryPostgresTest {
         String actual = wordRepository.fetchWordByNumber(27);
         assertThat(actual).isEqualTo("ARISE");
     }
-    //todo 3(table word does not exist)
+    //todo 3(table word does not exist) create table word (word_number int primary key, word char(5));
 }
