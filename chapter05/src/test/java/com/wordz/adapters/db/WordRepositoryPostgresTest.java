@@ -43,4 +43,5 @@ public class WordRepositoryPostgresTest {
         assertThat(actual).isEqualTo("ARISE");
     }
     //todo 3(table word does not exist) create table word (word_number int primary key, word char(5));
+    //todo 4 (permission denied for table word) grant select, insert, update, delete on all tables in schema public to ciuser;
 }
