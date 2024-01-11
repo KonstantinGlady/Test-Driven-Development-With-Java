@@ -20,6 +20,8 @@ dependencies {
     testImplementation 'com.github.database-rider:rider-junit5:1.41.0'
     implementation 'org.postgresql:postgresql:42.7.1'
 
+    implementation 'org.jdbi:jdbi3-core:3.34.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 }
 
 test {
