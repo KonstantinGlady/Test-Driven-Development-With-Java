@@ -6,6 +6,7 @@ import com.wordz.domain.Player;
 import org.jdbi.v3.core.Jdbi;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
 public class GameRepositoryPostgres implements GameRepository {
     private static final String SQL_INSERT_NEW_GAME_ROW =
@@ -30,7 +31,7 @@ public class GameRepositoryPostgres implements GameRepository {
     }
 
     @Override
-    public Game fetchForPlayer(Player player) {
+    public Optional<Game> fetchForPlayer(Player player) {
         return null;
     }
 

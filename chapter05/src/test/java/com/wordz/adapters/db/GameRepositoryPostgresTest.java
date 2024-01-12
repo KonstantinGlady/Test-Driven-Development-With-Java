@@ -13,6 +13,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DBRider
 @DBUnit(caseSensitiveTableNames = true, caseInsensitiveStrategy = Orthography.LOWERCASE)
@@ -37,4 +40,22 @@ public class GameRepositoryPostgresTest {
         GameRepository games = new GameRepositoryPostgres(dataSource);
         games.create(game);
     }
+
+    @Test
+    @DataSet(value = "adapters/data/createGame.json", cleanBefore = true)
+    void fetchesGame() {
+
+        GameRepository games = new GameRepositoryPostgres(dataSource);
+        Player player = new Player("player1");
+
+        Optional<Game> game = games.fetchForPlayer(player);
+        assertThat(game.isPresent()).isTrue();
+
+        var actual = game.get();
+        assertThat(actual.getPlayer()).isEqualTo(player);
+        assertThat(actual.getWord()).isEqualTo("BONUS");
+        assertThat(actual.getAttemptNumber()).isZero();
+        assertThat(actual.isGameOver()).isTrue();
+    }
+
 }

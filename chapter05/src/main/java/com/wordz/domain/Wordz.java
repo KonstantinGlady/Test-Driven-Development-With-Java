@@ -17,7 +17,7 @@ public class Wordz {
     }
 
     public GuessResult assess(Player player, String guess) {
-        var game = gameRepository.fetchForPlayer(player);
+        var game = gameRepository.fetchForPlayer(player).get();
 
         if (game.isGameOver()) {
             return GuessResult.ERROR;
