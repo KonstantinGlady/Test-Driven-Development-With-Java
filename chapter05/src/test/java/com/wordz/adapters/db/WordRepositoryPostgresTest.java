@@ -20,7 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WordRepositoryPostgresTest {
 
     private DataSource dataSource;
-    private ConnectionHolder connectionHolder = () -> dataSource.getConnection();
+    @SuppressWarnings("unused")
+    private final ConnectionHolder connectionHolder = () -> dataSource.getConnection();
 
     @BeforeEach
     void setupConnection() {
