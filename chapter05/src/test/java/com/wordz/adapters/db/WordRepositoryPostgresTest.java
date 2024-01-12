@@ -24,13 +24,9 @@ public class WordRepositoryPostgresTest {
 
     @BeforeEach
     void setupConnection() {
-        var ds = new PGSimpleDataSource();
-        ds.setServerNames(new String[]{"localhost"});
-        ds.setDatabaseName("wordzdb");
-        ds.setCurrentSchema("public");
-        ds.setUser("ciuser");
-        ds.setPassword("cipassword");
-        this.dataSource = ds;
+
+
+        this.dataSource = new PostgresTestDataSource();
     }
 
     //todo psql 1(user not exist): create user ciuser with password 'cipassword';
@@ -44,4 +40,12 @@ public class WordRepositoryPostgresTest {
     }
     //todo 3(table word does not exist) create table word (word_number int primary key, word char(5));
     //todo 4 (permission denied for table word) grant select, insert, update, delete on all tables in schema public to ciuser;
+
+    @Test
+    @DataSet("adapters/data/threeWords.json")
+    void returnsHighestWordNumber() {
+        WordRepository repository = new WordRepositoryPostgres(dataSource);
+        var actual = repository.highestWordNumber();
+        assertThat(actual).isEqualTo(3);
+    }
 }
