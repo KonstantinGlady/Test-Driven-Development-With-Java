@@ -55,7 +55,7 @@ public class GameRepositoryPostgresTest {
         assertThat(actual.getPlayer()).isEqualTo(player);
         assertThat(actual.getWord()).isEqualTo("BONUS");
         assertThat(actual.getAttemptNumber()).isZero();
-        assertThat(actual.isGameOver()).isTrue();
+        assertThat(actual.isGameOver()).isFalse();
     }
 
 }
