@@ -43,6 +43,11 @@ public class GameRepositoryPostgres implements GameRepository {
                         .findOne());
     }
 
+    @Override
+    public void update(Game game) {
+
+    }
+
     private Game mapToGame(ResultSet rs) throws SQLException {
         return new Game(new Player(rs.getString("player_name")),
                 rs.getString("word"),
@@ -50,8 +55,4 @@ public class GameRepositoryPostgres implements GameRepository {
                 rs.getBoolean("is_game_over"));
     }
 
-    @Override
-    public void update(Game game) {
-
-    }
 }

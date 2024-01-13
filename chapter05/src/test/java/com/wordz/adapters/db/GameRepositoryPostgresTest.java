@@ -66,4 +66,16 @@ public class GameRepositoryPostgresTest {
         Optional<Game> game = games.fetchForPlayer(player);
         assertThat(game.isEmpty()).isTrue();
     }
+
+    @Test
+    @DataSet(value = "adapters/data/createGame.json", cleanBefore = true)
+    @ExpectedDataSet("adapters/data/updatedGame.json")
+    void updatesGame() {
+        Player player = new Player("player1");
+        Game game = new Game(player, "BONUS", 0, false);
+        GameRepository games = new GameRepositoryPostgres(dataSource);
+
+        game.attempt("AAAAA");
+        games.update(game);
+    }
 }
