@@ -58,4 +58,12 @@ public class GameRepositoryPostgresTest {
         assertThat(actual.isGameOver()).isFalse();
     }
 
+    @Test
+    @DataSet("adapters/data/emptyGame.json")
+    void reportsGameNotFoundForPlayer() {
+        GameRepository games = new GameRepositoryPostgres(dataSource);
+        Player player = new Player("player1");
+        Optional<Game> game = games.fetchForPlayer(player);
+        assertThat(game.isEmpty()).isTrue();
+    }
 }
