@@ -16,6 +16,8 @@ public class GameRepositoryPostgres implements GameRepository {
                     "values(:playerName, :word, :attemptNumber, :isGameOver)";
     private static final String SQL_FIND_GAME_FOR_PLAYER =
             "select player_name, word, attempt_number, is_game_over from game where player_name=:playerName";
+    private static final String SQL_UPDATE_GAME_BY_PLAYER =
+            "update game set attempt_number=:attemptNumber, is_game_over=:isGameOver where player_name=:playerName";
     private final Jdbi jdbi;
 
     public GameRepositoryPostgres(DataSource dataSource) {
@@ -43,11 +45,6 @@ public class GameRepositoryPostgres implements GameRepository {
                         .findOne());
     }
 
-    @Override
-    public void update(Game game) {
-
-    }
-
     private Game mapToGame(ResultSet rs) throws SQLException {
         return new Game(new Player(rs.getString("player_name")),
                 rs.getString("word"),
@@ -55,4 +52,13 @@ public class GameRepositoryPostgres implements GameRepository {
                 rs.getBoolean("is_game_over"));
     }
 
+    @Override
+    public void update(Game game) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate(SQL_UPDATE_GAME_BY_PLAYER)
+                        .bind("playerName", game.getPlayer().getName())
+                        .bind("attemptNumber", game.getAttemptNumber())
+                        .bind("isGameOver", game.isGameOver())
+                        .execute());
+    }
 }
