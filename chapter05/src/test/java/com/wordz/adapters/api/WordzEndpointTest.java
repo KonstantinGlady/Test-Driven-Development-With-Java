@@ -3,7 +3,11 @@ package com.wordz.adapters.api;
 import com.google.gson.Gson;
 import com.vtence.molecule.http.HttpStatus;
 import com.wordz.domain.Player;
+import com.wordz.domain.Wordz;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,14 +18,18 @@ import java.net.http.HttpResponse;
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;
 
 
+@ExtendWith(MockitoExtension.class)
 public class WordzEndpointTest {
 
     private static final Player PLAYER = new Player("player1");
 
+    @Mock
+    private Wordz mockWordz;
+
     @Test
     void startGame() throws IOException, InterruptedException {
 
-        var endpoint = new WordzEndpoint("localhost", 8080);
+        var endpoint = new WordzEndpoint(mockWordz, "localhost", 8080);
 
         var httpClient = HttpClient.newHttpClient();
         HttpRequest req = HttpRequest.newBuilder()

@@ -10,10 +10,11 @@ public class Wordz {
         this.wordSelection = new WordSelection(wr, rn);
     }
 
-    public void newGame(Player player) {
+    public boolean newGame(Player player) {
         var word = wordSelection.chooseRandomWord();
         var game = new Game(player, word, 0, false);
         gameRepository.create(game);
+        return true;
     }
 
     public GuessResult assess(Player player, String guess) {
