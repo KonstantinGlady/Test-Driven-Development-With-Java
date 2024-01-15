@@ -40,14 +40,14 @@ public class WordzEndpointTest {
 
     @Test
     void startGame() throws IOException, InterruptedException {
-
         when(mockWordz.newGame(PLAYER))
                 .thenReturn(true);
 
-        HttpRequest req = requestBuilder("start")
+        var req = requestBuilder("start")
                 .POST(asJsonBody(PLAYER))
                 .build();
-        HttpResponse res = httpClient.send(req, HttpResponse.BodyHandlers.discarding());
+
+        var res = httpClient.send(req, HttpResponse.BodyHandlers.discarding());
         assertThat(res).hasStatusCode(HttpStatus.NO_CONTENT.code);
     }
 
@@ -55,9 +55,11 @@ public class WordzEndpointTest {
     void rejectsRestart() throws IOException, InterruptedException {
         when(mockWordz.newGame(PLAYER))
                 .thenReturn(false);
+
         var req = requestBuilder("start")
                 .POST(asJsonBody(PLAYER))
                 .build();
+
         var res = httpClient.send(req, HttpResponse.BodyHandlers.discarding());
         assertThat(res).hasStatusCode(HttpStatus.CONFLICT.code);
     }

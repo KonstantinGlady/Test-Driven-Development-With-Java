@@ -11,14 +11,15 @@ import com.wordz.domain.Wordz;
 
 import java.io.IOException;
 
+import static com.vtence.molecule.http.HttpStatus.*;
+
 public class WordzEndpoint {
 
-    private final WebServer server;
     private final Wordz wordz;
 
     public WordzEndpoint(Wordz wordz, String host, int port) {
         this.wordz = wordz;
-        server = WebServer.create(host, port);
+        var server = WebServer.create(host, port);
 
         try {
             server.route(new Routes() {{
@@ -33,20 +34,20 @@ public class WordzEndpoint {
     private Response startGame(Request request) {
 
         try {
-            var player = new Gson().fromJson(request.body(), Player.class);
+            var player = extractPlayer(request);
             boolean isSuccess = wordz.newGame(player);
-            if (isSuccess) {
 
-                return Response
-                        .of(HttpStatus.NO_CONTENT)
-                        .done();
-            }
+            HttpStatus status = isSuccess ? NO_CONTENT : CONFLICT;
             return Response
-                    .of(HttpStatus.CONFLICT)
+                    .of(status)
                     .done();
         } catch (IOException e) {
 
             throw new RuntimeException(e);
         }
+    }
+
+    private static Player extractPlayer(Request request) throws IOException {
+        return new Gson().fromJson(request.body(), Player.class);
     }
 }
