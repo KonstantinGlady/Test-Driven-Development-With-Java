@@ -21,6 +21,8 @@ public class WordzEndpointTest {
     @Test
     void startGame() throws IOException, InterruptedException {
 
+        var endpoint = new WordzEndpoint("localhost", 8080);
+
         var httpClient = HttpClient.newHttpClient();
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/start"))
