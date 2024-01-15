@@ -5,8 +5,9 @@ import com.vtence.molecule.http.HttpStatus;
 import com.wordz.domain.Player;
 import com.wordz.domain.Wordz;
 import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -18,21 +19,22 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WordzEndpointTest {
 
     private static final Player PLAYER = new Player("player1");
     private final HttpClient httpClient = HttpClient.newHttpClient();
-
-    @Mock
     private Wordz mockWordz;
     private WordzEndpoint endpoint;
 
-    @BeforeEach
+    @BeforeAll
     void setUp() {
+        mockWordz = mock(Wordz.class);
         endpoint = new WordzEndpoint(mockWordz, "localhost", 8080);
     }
 
