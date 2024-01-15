@@ -26,6 +26,8 @@ dependencies {
     implementation 'com.vtence.molecule:molecule:0.15.0'
     implementation 'io.thorntail:undertow:2.7.0.Final'
     implementation 'com.google.code.gson:gson:2.10'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
 }
 
 test {
