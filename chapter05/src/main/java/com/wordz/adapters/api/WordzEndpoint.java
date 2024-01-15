@@ -41,11 +41,12 @@ public class WordzEndpoint {
                         .of(HttpStatus.NO_CONTENT)
                         .done();
             }
+            return Response
+                    .of(HttpStatus.CONFLICT)
+                    .done();
         } catch (IOException e) {
 
             throw new RuntimeException(e);
         }
-
-        throw new UnsupportedOperationException("Not implemented");
     }
 }
