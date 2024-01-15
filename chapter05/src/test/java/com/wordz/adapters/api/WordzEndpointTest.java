@@ -16,6 +16,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;
+import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -30,6 +31,8 @@ public class WordzEndpointTest {
     void startGame() throws IOException, InterruptedException {
 
         var endpoint = new WordzEndpoint(mockWordz, "localhost", 8080);
+        when(mockWordz.newGame(PLAYER))
+                .thenReturn(true);
 
         var httpClient = HttpClient.newHttpClient();
         HttpRequest req = HttpRequest.newBuilder()
