@@ -49,6 +49,17 @@ public class WordzEndpointTest {
         assertThat(res).hasStatusCode(HttpStatus.NO_CONTENT.code);
     }
 
+    @Test
+    void rejectsRestart() throws IOException, InterruptedException {
+        when(mockWordz.newGame(PLAYER))
+                .thenReturn(false);
+        var req = requestBuilder("start")
+                .POST(asJsonBody(PLAYER))
+                .build();
+        var res = httpClient.send(req, HttpResponse.BodyHandlers.discarding());
+        assertThat(res).hasStatusCode(HttpStatus.CONFLICT.code);
+    }
+
     @NotNull
     private static HttpRequest.BodyPublisher asJsonBody(Object source) {
         return HttpRequest.BodyPublishers
