@@ -1,6 +1,7 @@
 package com.wordz.adapters.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.vtence.molecule.Request;
 import com.vtence.molecule.Response;
 import com.vtence.molecule.WebServer;
@@ -41,9 +42,9 @@ public class WordzEndpoint {
             return Response
                     .of(status)
                     .done();
-        } catch (IOException e) {
+        } catch (IOException | JsonSyntaxException e) {
 
-            throw new RuntimeException(e);
+            return Response.of(HttpStatus.BAD_REQUEST).done();
         }
     }
 

@@ -40,7 +40,7 @@ public class WordzEndpointTest {
     }
 
     @Test
-    void startGame() throws IOException, InterruptedException {
+    void startGame() throws Exception {
         when(mockWordz.newGame(PLAYER))
                 .thenReturn(true);
 
@@ -53,7 +53,7 @@ public class WordzEndpointTest {
     }
 
     @Test
-    void rejectsRestart() throws IOException, InterruptedException {
+    void rejectsRestart() throws Exception {
         when(mockWordz.newGame(PLAYER))
                 .thenReturn(false);
 
