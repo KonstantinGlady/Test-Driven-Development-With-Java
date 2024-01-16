@@ -40,10 +40,20 @@ public class WordzEndpoint {
 
             GuessRequest gr = extractGuessRequest(request);
             GuessResult result = wordz.assess(gr.player(), gr.guess());
-            return null;
+
+            return Response.ok()
+                    .body(createGuessHttpResponse(result))
+                    .done();
         } catch (IOException e) {
+
             throw new RuntimeException(e);
         }
+    }
+
+    private String createGuessHttpResponse(GuessResult result) {
+        GuessHttpResponse httpResponse =
+                new GuessHttpResponseMapper().from(result);
+        return new Gson().toJson(httpResponse);
     }
 
     private GuessRequest extractGuessRequest(Request request) throws IOException {
