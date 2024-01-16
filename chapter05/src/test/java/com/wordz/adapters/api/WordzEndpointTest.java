@@ -2,7 +2,9 @@ package com.wordz.adapters.api;
 
 import com.google.gson.Gson;
 import com.vtence.molecule.http.HttpStatus;
+import com.wordz.domain.GuessResult;
 import com.wordz.domain.Player;
+import com.wordz.domain.Score;
 import com.wordz.domain.Wordz;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
@@ -73,6 +75,18 @@ public class WordzEndpointTest {
 
         var res = httpClient.send(req, HttpResponse.BodyHandlers.discarding());
         assertThat(res).hasStatusCode(HttpStatus.BAD_REQUEST.code);
+    }
+
+    @Test
+    void partiallyCorrectGuess() {
+
+        var score = new Score("-U---");
+        score.assess("GUESS");
+
+        var result = new GuessResult(score, false, false);
+        when(mockWordz.assess(PLAYER, "GUESS"))
+                .thenReturn(result);
+
     }
 
     @NotNull
