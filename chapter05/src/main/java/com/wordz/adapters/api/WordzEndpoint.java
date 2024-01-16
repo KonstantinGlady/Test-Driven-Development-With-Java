@@ -7,6 +7,7 @@ import com.vtence.molecule.Response;
 import com.vtence.molecule.WebServer;
 import com.vtence.molecule.http.HttpStatus;
 import com.vtence.molecule.routing.Routes;
+import com.wordz.domain.GuessResult;
 import com.wordz.domain.Player;
 import com.wordz.domain.Wordz;
 
@@ -26,10 +27,27 @@ public class WordzEndpoint {
             server.route(new Routes() {{
                 post("/start")
                         .to(request -> startGame(request));
+                post("/guess").to(request -> guessWord(request));
             }});
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    private Response guessWord(Request request) {
+
+        try {
+
+            GuessRequest gr = extractGuessRequest(request);
+            GuessResult result = wordz.assess(gr.player(), gr.guess());
+            return null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private GuessRequest extractGuessRequest(Request request) throws IOException {
+        return new Gson().fromJson(request.body(), GuessRequest.class);
     }
 
     private Response startGame(Request request) {
