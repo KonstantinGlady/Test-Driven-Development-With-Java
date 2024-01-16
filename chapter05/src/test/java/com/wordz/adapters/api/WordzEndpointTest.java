@@ -19,6 +19,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import static com.vtence.molecule.testing.http.HttpResponseAssert.assertThat;
+import static java.net.http.HttpRequest.BodyPublishers.ofString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -64,10 +65,19 @@ public class WordzEndpointTest {
         assertThat(res).hasStatusCode(HttpStatus.CONFLICT.code);
     }
 
+    @Test
+    void rejectsMalformedRequest() throws Exception {
+        var req = requestBuilder("start")
+                .POST(ofString("malformed"))
+                .build();
+
+        var res = httpClient.send(req, HttpResponse.BodyHandlers.discarding());
+        assertThat(res).hasStatusCode(HttpStatus.BAD_REQUEST.code);
+    }
+
     @NotNull
     private static HttpRequest.BodyPublisher asJsonBody(Object source) {
-        return HttpRequest.BodyPublishers
-                .ofString(new Gson().toJson(source));
+        return ofString(new Gson().toJson(source));
     }
 
     private static HttpRequest.Builder requestBuilder(String path) {
