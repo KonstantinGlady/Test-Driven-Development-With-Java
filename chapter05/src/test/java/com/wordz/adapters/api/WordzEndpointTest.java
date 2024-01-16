@@ -6,6 +6,7 @@ import com.wordz.domain.GuessResult;
 import com.wordz.domain.Player;
 import com.wordz.domain.Score;
 import com.wordz.domain.Wordz;
+import org.assertj.core.api.Assertions;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -78,14 +79,29 @@ public class WordzEndpointTest {
     }
 
     @Test
-    void partiallyCorrectGuess() {
+    void partiallyCorrectGuess() throws Exception {
 
-        var score = new Score("-U---");
+        var score = new Score("-U--G");
         score.assess("GUESS");
 
         var result = new GuessResult(score, false, false);
         when(mockWordz.assess(PLAYER, "GUESS"))
                 .thenReturn(result);
+
+        var guessRequest = new GuessRequest(PLAYER, "-U--G");
+        var body = new Gson().toJson(guessRequest);
+
+        var req = requestBuilder("guess")
+                .POST(ofString(body))
+                .build();
+
+        var res = httpClient.send(req, HttpResponse.BodyHandlers.ofString());
+        var response = new Gson().fromJson(res.body(), GuessHttpResponse.class);
+
+        //key to letters in score:
+        // C correct P part correct X incorrect
+        Assertions.assertThat(response.score()).isEqualTo("PCXXX");
+        Assertions.assertThat(response.isGameOver()).isFalse();
 
     }
 
