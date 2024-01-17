@@ -123,6 +123,24 @@ public class WordzEndpointTest {
         Assertions.assertThat(response.isGameOver()).isTrue();
     }
 
+    @Test
+    void reportsError() throws Exception {
+
+        var result = new GuessResult(new Score("-----"), false, true);
+        when(mockWordz.assess(PLAYER, "GUESS"))
+                .thenReturn(result);
+
+        var request = new GuessRequest(PLAYER, "GUESS");
+        var body = new Gson().toJson(request);
+
+        var req = requestBuilder("guess")
+                .POST(ofString(body))
+                .build();
+
+        var res = httpClient.send(req, HttpResponse.BodyHandlers.ofString());
+        assertThat(res).hasStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.code);
+    }
+
     @NotNull
     private static HttpRequest.BodyPublisher asJsonBody(Object source) {
         return ofString(new Gson().toJson(source));
