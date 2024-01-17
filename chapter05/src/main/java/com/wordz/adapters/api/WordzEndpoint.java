@@ -40,12 +40,16 @@ public class WordzEndpoint {
             GuessRequest gr = extractGuessRequest(request);
             GuessResult result = wordz.assess(gr.player(), gr.guess());
 
+            if (result.isError()) {
+                return Response.of(HttpStatus.INTERNAL_SERVER_ERROR).done();
+            }
+
             return Response.ok()
                     .body(createGuessHttpResponse(result))
                     .done();
         } catch (IOException e) {
 
-            throw new RuntimeException(e);
+            return Response.of(HttpStatus.INTERNAL_SERVER_ERROR).done();
         }
     }
 
