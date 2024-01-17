@@ -25,8 +25,7 @@ public class WordzEndpoint {
 
         try {
             server.route(new Routes() {{
-                post("/start")
-                        .to(request -> startGame(request));
+                post("/start").to(request -> startGame(request));
                 post("/guess").to(request -> guessWord(request));
             }});
         } catch (IOException e) {

@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WordzEndpointTest {
 
-    private static final Player PLAYER = new Player("player1");
+    private final Player PLAYER = new Player("player1");
     private final HttpClient httpClient = HttpClient.newHttpClient();
     private Wordz mockWordz;
     private WordzEndpoint endpoint;
@@ -88,7 +88,7 @@ public class WordzEndpointTest {
         when(mockWordz.assess(PLAYER, "GUESS"))
                 .thenReturn(result);
 
-        var guessRequest = new GuessRequest(PLAYER, "-U--G");
+        var guessRequest = new GuessRequest(PLAYER, "GUESS");
         var body = new Gson().toJson(guessRequest);
 
         var req = requestBuilder("guess")

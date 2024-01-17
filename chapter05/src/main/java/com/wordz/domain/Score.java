@@ -3,6 +3,8 @@ package com.wordz.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.unmodifiableList;
+
 public class Score {
 
     private final String correct;
@@ -49,5 +51,9 @@ public class Score {
                 .filter(letter -> letter == Letter.CORRECT)
                 .count();
         return totalCorrect == correct.length();
+    }
+
+    public List<Letter> letters() {
+        return unmodifiableList(results);
     }
 }
