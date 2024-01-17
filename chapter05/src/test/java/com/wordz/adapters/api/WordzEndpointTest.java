@@ -12,10 +12,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -31,6 +29,7 @@ import static org.mockito.Mockito.when;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WordzEndpointTest {
 
+    //todo insert into word values (1, 'ARISE'), (2, 'SHINE'), (3, 'LIGHT'), (4, 'SLEEP'), (5, 'BEARS'), (6, 'GREET'), (7, 'GRATE');
     private final Player PLAYER = new Player("player1");
     private final HttpClient httpClient = HttpClient.newHttpClient();
     private Wordz mockWordz;
@@ -103,6 +102,25 @@ public class WordzEndpointTest {
         Assertions.assertThat(response.score()).isEqualTo("PCXXX");
         Assertions.assertThat(response.isGameOver()).isFalse();
 
+    }
+
+    @Test
+    void reportsGameOver() throws Exception {
+
+        var guessResult = new GuessResult(new Score("-----"), true, false);
+        when(mockWordz.assess(PLAYER, "GUESS"))
+                .thenReturn(guessResult);
+
+        var request = new GuessRequest(PLAYER, "GUESS");
+        var body = new Gson().toJson(request);
+        var req = requestBuilder("guess")
+                .POST(ofString(body))
+                .build();
+
+        var res = httpClient.send(req, HttpResponse.BodyHandlers.ofString());
+        var response = new Gson().fromJson(res.body(), GuessHttpResponse.class);
+
+        Assertions.assertThat(response.isGameOver()).isTrue();
     }
 
     @NotNull
